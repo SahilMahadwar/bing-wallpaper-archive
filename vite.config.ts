@@ -8,8 +8,4 @@ installGlobals();
 
 export default defineConfig({
   plugins: [remix({ presets: [vercelPreset()] }), tsconfigPaths()],
-  server: {
-    open: true,
-    port: 3000,
-  },
 });

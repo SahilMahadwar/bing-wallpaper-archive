@@ -1,15 +1,20 @@
 import { json, LoaderFunctionArgs } from "@vercel/remix";
-import axios from "axios";
+import fetch from "node-fetch";
 import { ubuntuThemes } from "~/data/ubuntu-themes";
+import { WallpaperData } from "~/types";
 import { getColorTheme } from "~/utils";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   try {
-    const wallpaperRes = await axios.get(
+    const wallpaperRes = await fetch(
       "https://bing.biturl.top/?resolution=3840&format=json&index=0&mkt=zh-CN"
     );
 
-    const wallpaperData = wallpaperRes.data;
+    if (!wallpaperRes.ok) {
+      throw new Error(`Failed to fetch wallpaper: ${wallpaperRes.status}`);
+    }
+
+    const wallpaperData = (await wallpaperRes.json()) as WallpaperData;
 
     const theme = await getColorTheme({
       imagePath: wallpaperData.url,
@@ -30,6 +35,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   } catch (error: any) {
     // Handle errors
     console.error("Error fetching data:", error);
-    return json({ success: false, error: error.message }, 500);
+    return json({ success: false, error }, 500);
   }
 };
