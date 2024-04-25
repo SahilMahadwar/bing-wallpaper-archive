@@ -1,4 +1,4 @@
-import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { json, LoaderFunctionArgs } from "@vercel/remix";
 import axios from "axios";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
