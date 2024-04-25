@@ -1,4 +1,6 @@
-export const ubuntuThemes = [
+import { Color } from "~/types";
+
+export const ubuntuThemes: Color[] = [
   { name: "Yaru-dark", rgb: [233, 84, 32] },
   { name: "Yaru-bark-dark", rgb: [120, 120, 89] },
   { name: "Yaru-sage-dark", rgb: [101, 123, 105] },
