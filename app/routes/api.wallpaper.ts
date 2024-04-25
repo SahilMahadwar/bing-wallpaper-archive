@@ -1,4 +1,4 @@
-import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { json, LoaderFunctionArgs } from "@vercel/remix";
 import axios from "axios";
 import { ubuntuThemes } from "~/data/ubuntu-themes";
 import { getColorTheme } from "~/utils";
